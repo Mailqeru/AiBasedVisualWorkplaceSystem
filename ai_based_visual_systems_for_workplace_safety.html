@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Visual Systems for Workplace Safety</title>
+    <!-- Tailwind CSS for high-quality utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #0b0f19;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .slide-hidden {
+            display: none !important;
+        }
+        .slide-visible {
+            display: flex !important;
+        }
+        /* Gradient Background Blobs */
+        .bg-blob-1 {
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0) 70%);
+        }
+        .bg-blob-2 {
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0) 70%);
+        }
+        /* Glow animations */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
+        .live-glow {
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+        /* Transition utility */
+        .fade-transition {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="h-full select-none flex flex-col justify-between">
+
+    <!-- Top Interactive Control Bar -->
+    <header class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-wrap justify-between items-center z-50">
+        <div class="flex items-center gap-3">
+            <span class="bg-orange-500 text-white text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wider">AI Safety Review</span>
+            <h1 class="text-sm md:text-base font-semibold text-slate-200 hidden sm:inline-block">AI-Based Visual Workplace Systems</h1>
+        </div>
+
+        <div class="flex items-center gap-4 flex-wrap">
+            <!-- Global Mode Switch (Layman Explainer vs Jargon) -->
+            <div class="flex items-center gap-2 bg-slate-800 rounded-full px-3 py-1.5 border border-slate-700">
+                <i class="fa-solid fa-graduation-cap text-cyan-400 text-sm"></i>
+                <span class="text-xs font-semibold text-slate-300">Explainer Mode</span>
+                <button id="toggle-jargon" class="relative inline-flex h-5 w-10 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-slate-600" role="switch" aria-checked="false">
+                    <span id="toggle-dot" class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out translate-x-0"></span>
+                </button>
+            </div>
+
+            <!-- Slide Jumper Dropdown -->
+            <select id="slide-jumper" class="bg-slate-800 border border-slate-700 text-xs text-slate-300 rounded-md px-2.5 py-1.5 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                <!-- Programmatically populated options -->
+            </select>
+
+            <!-- Screen View Mode Toggle -->
+            <button id="fullscreen-btn" class="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-md transition-all" title="Toggle Fullscreen">
+                <i class="fa-solid fa-expand"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Presentation Workspace -->
+    <main class="flex-grow relative flex items-center justify-center p-4 overflow-hidden">
+        <div class="bg-blob-1 absolute top-[-10%] right-[-10%] w-[600px] h-[600px] z-0 pointer-events-none rounded-full"></div>
+        <div class="bg-blob-2 absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] z-0 pointer-events-none rounded-full"></div>
+
+        <!-- Master Slides Canvas Holder -->
+        <div id="slide-deck" class="w-full max-w-7xl h-[85vh] md:h-[75vh] bg-slate-900/80 border border-slate-800 backdrop-blur-md rounded-2xl p-6 md:p-10 relative flex flex-col justify-between z-10 shadow-2xl overflow-y-auto">
+            
+            <!-- Slide 1: Welcome Screen -->
+            <div class="slide flex-col justify-between h-full w-full slide-visible" data-title="1. Title Slide">
+                <div class="m-auto text-center max-w-3xl">
+                    <p class="text-orange-500 font-bold uppercase tracking-widest text-sm md:text-base mb-2">Review of Computer Vision Applications</p>
+                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-white mb-6">
+                        AI-Based Visual Systems for <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">Workplace Safety & Productivity</span>
+                    </h1>
+                    <div class="w-24 h-1.5 bg-gradient-to-r from-orange-500 to-amber-500 mx-auto rounded-full mb-8"></div>
+                    <p class="text-slate-400 text-sm md:text-base mb-4">A critical industrial review of automated monitoring networks</p>
+                    
+                    <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 max-w-xl mx-auto mb-6">
+                        <p class="text-xs text-slate-500 uppercase font-semibold mb-2">Prepared by Authors:</p>
+                        <p class="text-xs md:text-sm font-medium text-slate-300">
+                            Mohammad Zakwan Zuhairie bin Mohd Zain &bull; Ismail bin Esa &bull; Harresh Uthayakumar
+                        </p>
+                    </div>
+                    
+                    <!-- PPTX Reference Card -->
+                    <div class="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 text-orange-400 px-4 py-2 rounded-full text-xs">
+                        <i class="fa-solid fa-file-powerpoint text-sm"></i>
+                        <span>Companion slides: <strong>AI_Workplace_Monitoring_Presentation.pptx</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Research Scope & Expected Outcomes -->
+            <div class="slide flex-col justify-between h-full w-full slide-hidden" data-title="2. Objectives & Metrics">
+                <div>
+                    <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest border-l-4 border-orange-500 pl-2">Section 01</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-6">Research Objectives & Expected Impact</h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 items-stretch">
+                    <div class="bg-slate-950/40 border border-slate-800 rounded-xl p-5 flex flex-col justify-between">
+                        <h3 class="text-lg font-semibold text-cyan-400 flex items-center gap-2 mb-3">
+                            <i class="fa-solid fa-crosshairs"></i> Core Problem Solved
+                        </h3>
+                        <ul class="space-y-3.5 text-sm md:text-base">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
+                                <span><strong class="text-slate-200">Remove Human Fatigue:</strong> Replaces continuous manual monitoring with 24/7 computer stream monitoring.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
+                                <span><strong class="text-slate-200">Real-Time Auditing:</strong> Identifies hazardous movements and reports violations to supervisors immediately.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
+                                <span><strong class="text-slate-200">Eliminate Delayed Alerts:</strong> Stops hazards before they turn into major workflow safety incidents.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-950/40 border border-slate-800 rounded-xl p-5 flex flex-col justify-center gap-4">
+                        <h3 class="text-lg font-semibold text-orange-400 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-simple"></i> Anticipated Outcomes
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 text-center">
+                                <span class="block text-3xl md:text-4xl font-extrabold text-orange-500">40-50%</span>
+                                <span class="text-xs text-slate-400 block mt-1">Reduction in Total Safety Violations</span>
+                            </div>
+                            <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 text-center">
+                                <span class="block text-3xl md:text-4xl font-extrabold text-cyan-400">15-20%</span>
+                                <span class="text-xs text-slate-400 block mt-1">Boost in On-Site Spatial Productivity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Multimedia System Architecture -->
+            <div class="slide flex-col justify-between h-full w-full slide-hidden" data-title="3. Architectural Walkthrough">
+                <div>
+                    <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest border-l-4 border-orange-500 pl-2">System Design</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">Multimedia Architecture Pipeline</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-12 gap-6 items-center">
+                    <!-- Interactive Steps Picker (left) -->
+                    <div class="md:col-span-5 space-y-2.5">
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Click steps to inspect details:</p>
+                        <button onclick="selectArchStep(1)" class="arch-step-btn w-full text-left bg-cyan-950/30 hover:bg-cyan-900/40 border border-cyan-500/30 p-3 rounded-lg flex items-center gap-3 transition-all" id="step-btn-1">
+                            <span class="bg-cyan-500 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm shrink-0">1</span>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Live Stream Capture</h4>
+                                <p class="text-xs text-slate-400">Acquire frames from RTSP security feeds</p>
+                            </div>
+                        </button>
+                        <button onclick="selectArchStep(2)" class="arch-step-btn w-full text-left bg-slate-900/40 hover:bg-slate-800/40 border border-slate-800 p-3 rounded-lg flex items-center gap-3 transition-all" id="step-btn-2">
+                            <span class="bg-slate-700 text-slate-300 w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm shrink-0">2</span>
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-300">Frame Pre-processing</h4>
+                                <p class="text-xs text-slate-400">Scale dimensions, clear grain & shadows</p>
+                            </div>
+                        </button>
+                        <button onclick="selectArchStep(3)" class="arch-step-btn w-full text-left bg-slate-900/40 hover:bg-slate-800/40 border border-slate-800 p-3 rounded-lg flex items-center gap-3 transition-all" id="step-btn-3">
+                            <span class="bg-slate-700 text-slate-300 w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm shrink-0">3</span>
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-300">Deep Neural Inference</h4>
+                                <p class="text-xs text-slate-400">Execute localization and pattern mapping</p>
+                            </div>
+                        </button>
+                        <button onclick="selectArchStep(4)" class="arch-step-btn w-full text-left bg-slate-900/40 hover:bg-slate-800/40 border border-slate-800 p-3 rounded-lg flex items-center gap-3 transition-all" id="step-btn-4">
+                            <span class="bg-slate-700 text-slate-300 w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm shrink-0">4</span>
+                            <div>
+                                <h4 class="text-sm font-semibold text-slate-300">Local Alarm Dispatch</h4>
+                                <p class="text-xs text-slate-400">Alert edge nodes with ultra low-delay</p>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Visual output terminal (right) -->
+                    <div class="md:col-span-7 bg-slate-950 border border-slate-800 rounded-xl p-5 min-h-[220px] flex flex-col justify-between shadow-inner">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+                            <span class="text-xs font-mono text-cyan-400 flex items-center gap-2">
+                                <span class="h-2 w-2 rounded-full bg-cyan-400 live-glow"></span>
+                                ARCHITECTURE STREAM TERMINAL
+                            </span>
+                            <span class="text-[10px] text-slate-500 font-mono">feed_id_092</span>
+                        </div>
+                        <div id="arch-terminal-content" class="text-sm text-slate-300 font-mono min-h-[140px] flex flex-col justify-center">
+                            <!-- Injected by Javascript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Interactive PPE Detection Sandbox -->
+            <div class="slide flex-col justify-between h-full w-full slide-hidden" data-title="4. Interactive PPE Sandbox">
+                <div>
+                    <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest border-l-4 border-orange-500 pl-2">Simulator Tool</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">Interactive Compliance Sandbox</h2>
+                </div>
+
+                <div class="grid md:grid-cols-12 gap-6 items-center">
+                    <!-- Sandbox Controls (left) -->
+                    <div class="md:col-span-5 space-y-4">
+                        <p class="text-sm text-slate-300">
+                            Equip the virtual operator with safety gear to run compliance checks and trigger edge audits:
+                        </p>
+                        
+                        <!-- Toggle Controls -->
+                        <div class="space-y-3 bg-slate-950/40 p-4 border border-slate-800 rounded-xl">
+                            <!-- Helmet Toggle -->
+                            <div class="flex items-center justify-between p-2 hover:bg-slate-900/50 rounded-lg">
+                                <label class="flex items-center gap-2 cursor-pointer text-sm font-semibold">
+                                    <i class="fa-solid fa-helmet-safety text-amber-500"></i>
+                                    <span>Helmet Compliance</span>
+                                </label>
+                                <input type="checkbox" id="sim-helmet" onchange="runPpeSim()" class="w-4 h-4 text-orange-500 rounded border-slate-700 bg-slate-800 focus:ring-orange-500" checked>
+                            </div>
+                            <!-- Vest Toggle -->
+                            <div class="flex items-center justify-between p-2 hover:bg-slate-900/50 rounded-lg">
+                                <label class="flex items-center gap-2 cursor-pointer text-sm font-semibold">
+                                    <i class="fa-solid fa-vest text-orange-500"></i>
+                                    <span>High-Vis Vest</span>
+                                </label>
+                                <input type="checkbox" id="sim-vest" onchange="runPpeSim()" class="w-4 h-4 text-orange-500 rounded border-slate-700 bg-slate-800 focus:ring-orange-500" checked>
+                            </div>
+                            <!-- Gloves Toggle -->
+                            <div class="flex items-center justify-between p-2 hover:bg-slate-900/50 rounded-lg">
+                                <label class="flex items-center gap-2 cursor-pointer text-sm font-semibold">
+                                    <i class="fa-solid fa-mitten text-blue-400"></i>
+                                    <span>Heavy Duty Gloves</span>
+                                </label>
+                                <input type="checkbox" id="sim-gloves" onchange="runPpeSim()" class="w-4 h-4 text-orange-500 rounded border-slate-700 bg-slate-800 focus:ring-orange-500">
+                            </div>
+                        </div>
+
+                        <!-- System Warning Indicator Output Box -->
+                        <div id="ppe-alert-banner" class="p-3.5 rounded-xl text-xs font-semibold flex items-center gap-2.5 transition-all">
+                            <!-- Dynamic Content -->
+                        </div>
+                    </div>
+
+                    <!-- Sandbox Interactive Visual (right) -->
+                    <div class="md:col-span-7 flex justify-center items-center bg-slate-950 border border-slate-800 rounded-xl p-4 relative min-h-[280px]">
+                        <!-- Render Canvas containing Worker & dynamic overlay -->
+                        <div class="relative w-[180px] h-[260px] bg-slate-900/60 rounded-lg border border-slate-800 flex justify-center items-center overflow-hidden">
+                            <!-- Simple Worker SVG layout -->
+                            <svg class="w-full h-full" viewBox="0 0 100 150">
+                                <!-- Background grid -->
+                                <defs>
+                                    <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+                                    </pattern>
+                                </defs>
+                                <rect width="100%" height="100%" fill="url(#grid)" />
+                                
+                                <!-- Head/Neck/Body base -->
+                                <circle cx="50" cy="40" r="11" fill="#475569" />
+                                <rect x="35" y="55" width="30" height="60" rx="3" fill="#475569" />
+                                <!-- Arms -->
+                                <line x1="35" y1="58" x2="20" y2="85" stroke="#475569" stroke-width="6" stroke-linecap="round" />
+                                <line x1="65" y1="58" x2="80" y2="85" stroke="#475569" stroke-width="6" stroke-linecap="round" />
+                                <!-- Legs -->
+                                <line x1="42" y1="114" x2="42" y2="142" stroke="#475569" stroke-width="7" />
+                                <line x1="58" y1="114" x2="58" y2="142" stroke="#475569" stroke-width="7" />
+
+                                <!-- Interactive Helmet Overlay -->
+                                <g id="svg-helmet-group" class="transition-opacity duration-300">
+                                    <path d="M 37 36 A 13 13 0 0 1 63 36 Z" fill="#f59e0b" />
+                                    <rect x="35" y="35" width="30" height="2" rx="1" fill="#f59e0b" />
+                                    <!-- Detector Box Helmet -->
+                                    <rect x="33" y="21" width="34" height="18" fill="none" stroke="#10b981" stroke-width="1.2" stroke-dasharray="2 1" />
+                                    <text x="35" y="30" fill="#10b981" font-size="4" font-weight="bold" font-family="monospace">Helmet 98%</text>
+                                </g>
+
+                                <!-- Interactive Vest Overlay -->
+                                <g id="svg-vest-group" class="transition-opacity duration-300">
+                                    <rect x="37" y="57" width="26" height="40" rx="2" fill="#ea580c" />
+                                    <path d="M 45 57 L 50 67 L 55 57" stroke="#111827" stroke-width="3" fill="none" />
+                                    <rect x="42" y="65" width="3" height="30" fill="#cbd5e1" />
+                                    <rect x="55" y="65" width="3" height="30" fill="#cbd5e1" />
+                                    <!-- Detector Box Vest -->
+                                    <rect x="33" y="54" width="34" height="46" fill="none" stroke="#10b981" stroke-width="1.2" stroke-dasharray="2 1" />
+                                    <text x="35" y="63" fill="#10b981" font-size="4" font-weight="bold" font-family="monospace">Vest 96%</text>
+                                </g>
+
+                                <!-- Interactive Gloves Overlay -->
+                                <g id="svg-gloves-group" class="transition-opacity duration-300">
+                                    <circle cx="20" cy="85" r="4.5" fill="#3b82f6" />
+                                    <circle cx="80" cy="85" r="4.5" fill="#3b82f6" />
+                                    <!-- Detector Box Gloves -->
+                                    <rect x="13" y="79" width="14" height="12" fill="none" stroke="#10b981" stroke-width="1" stroke-dasharray="1.5 1" />
+                                    <text x="14" y="93" fill="#10b981" font-size="3" font-weight="bold" font-family="monospace">Gloves 91%</text>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <!-- System Audit Bounding Overlay Markers -->
+                        <div class="absolute top-4 right-4 bg-slate-900 border border-slate-800 p-3 rounded-lg text-xs font-mono space-y-1.5 w-44">
+                            <p class="text-[10px] text-slate-500 font-semibold border-b border-slate-800 pb-1">AI CLASSIFICATION FEED</p>
+                            <p id="hud-helmet" class="flex justify-between"><span>Helmet:</span> <span class="text-green-400 font-bold">YES</span></p>
+                            <p id="hud-vest" class="flex justify-between"><span>High-Vis:</span> <span class="text-green-400 font-bold">YES</span></p>
+                            <p id="hud-gloves" class="flex justify-between"><span>Gloves:</span> <span class="text-red-400 font-bold">MISSING</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Action Recognition & Pose Estimation Simulator -->
+            <div class="slide flex-col justify-between h-full w-full slide-hidden" data-title="5. Joint Pose Sandbox">
+                <div>
+                    <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest border-l-4 border-orange-500 pl-2">Anatomy Evaluation</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">Ergonomics & Slip-Fall Simulation</h2>
+                </div>
+
+                <div class="grid md:grid-cols-12 gap-6 items-center">
+                    <!-- Anatomy Controls (left) -->
+                    <div class="md:col-span-5 space-y-4">
+                        <p class="text-sm text-slate-300">
+                            By tracking skeletal coordinates, models can instantly categorize biomechanical safety:
+                        </p>
+                        <div class="grid grid-cols-1 gap-2.5">
+                            <button onclick="setSkeletonPose('safe')" id="pose-btn-safe" class="pose-btn w-full bg-slate-950/40 hover:bg-slate-800 border-2 border-green-500/80 p-3 rounded-xl flex items-center justify-between transition-all">
+                                <span class="text-sm font-semibold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-square-check text-green-500"></i> Safe Squat-Lift Pose
+                                </span>
+                                <span class="text-xs bg-green-500/20 text-green-400 font-bold px-2 py-0.5 rounded">Optimal</span>
+                            </button>
+                            <button onclick="setSkeletonPose('bend')" id="pose-btn-bend" class="pose-btn w-full bg-slate-950/40 hover:bg-slate-800 border border-slate-800 p-3 rounded-xl flex items-center justify-between transition-all">
+                                <span class="text-sm font-semibold text-slate-300 flex items-center gap-2">
+                                    <i class="fa-solid fa-triangle-exclamation text-amber-500"></i> Unsafe Back-Bending
+                                </span>
+                                <span class="text-xs bg-amber-500/20 text-amber-400 font-bold px-2 py-0.5 rounded">High Strain</span>
+                            </button>
+                            <button onclick="setSkeletonPose('fall')" id="pose-btn-fall" class="pose-btn w-full bg-slate-950/40 hover:bg-slate-800 border border-slate-800 p-3 rounded-xl flex items-center justify-between transition-all">
+                                <span class="text-sm font-semibold text-slate-300 flex items-center gap-2">
+                                    <i class="fa-solid fa-user-injured text-red-500"></i> Critical Slip-Fall Event
+                                </span>
+                                <span class="text-xs bg-red-500/20 text-red-400 font-bold px-2 py-0.5 rounded">Alert Level</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sandbox Skeleton Display (right) -->
+                    <div class="md:col-span-7 bg-slate-950 border border-slate-800 rounded-xl p-5 relative min-h-[280px] flex flex-col items-center justify-center">
+                        <div class="w-full flex items-center justify-between border-b border-slate-800 pb-2 mb-4">
+                            <span class="text-xs font-mono text-cyan-400 flex items-center gap-2">
+                                <span class="h-2 w-2 rounded-full bg-cyan-400 live-glow"></span>
+                                REAL-TIME SKELETAL CO-ORDINATE VECTOR
+                            </span>
+                            <span id="pose-status-text" class="text-xs font-bold text-green-400 px-2 py-0.5 rounded bg-green-400/10">HEALTHY POSITION</span>
+                        </div>
+                        
+                        <div class="flex items-center gap-8 w-full justify-around">
+                            <!-- SVG skeleton holder -->
+                            <div class="w-[180px] h-[180px] bg-slate-900 border border-slate-800 rounded-xl relative overflow-hidden flex items-center justify-center">
+                                <svg class="w-full h-full p-2" viewBox="0 0 100 100">
+                                    <!-- Drawing grids -->
+                                    <line x1="0" y1="50" x2="100" y2="50" stroke="#1e293b" stroke-width="0.5" />
+                                    <line x1="50" y1="0" x2="50" y2="100" stroke="#1e293b" stroke-width="0.5" />
+                                    
+                                    <!-- Dynamic Skeleton Path lines -->
+                                    <path id="skeletal-path" d="M 50 15 L 50 40 L 50 70 M 50 40 L 30 55 M 50 40 L 70 55 M 50 70 L 40 90 M 50 70 L 60 90" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-all duration-500" />
+                                    
+                                    <!-- Node Dots -->
+                                    <g id="skeleton-nodes" class="transition-all duration-500">
+                                        <!-- Nodes updated inside setSkeletonPose() -->
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- Analysis gauges -->
+                            <div class="space-y-4 w-44">
+                                <div>
+                                    <span class="text-xs text-slate-400 font-semibold block mb-1">Lumbar/Hip Strain Index</span>
+                                    <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
+                                        <div id="gauge-lumbar" class="bg-green-500 h-2.5 rounded-full transition-all duration-500" style="width: 15%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 font-semibold block mb-1">Center of Gravity Deviation</span>
+                                    <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
+                                        <div id="gauge-balance" class="bg-green-500 h-2.5 rounded-full transition-all duration-500" style="width: 8%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Floor Space Bottlenecks & Spatial Heatmap -->
+            <div class="slide flex-col justify-between h-full w-full slide-hidden" data-title="6. Spatial Bottlenecks">
+                <div>
+                    <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest border-l-4 border-orange-500 pl-2">Productivity Analysis</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">Interactive Floor Space Heatmap</h2>
+                </div>
+
+                <div class="grid md:grid-cols-12 gap-6 items-center">
+                    <!-- Left: Description and click directions -->
+                    <div class="md:col-span-5 space-y-3">
+                        <p class="text-sm text-slate-300">
+                            The vision suite monitors spatial coordinate tracks, converting movements into live heatmaps to redesign workflows.
+                        </p>
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Click factory hot-zones below to inspect efficiency:</p>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="selectFloorZone('a')" id="zone-btn-a" class="zone-btn border-2 border-orange-500 bg-orange-500/10 hover:bg-orange-500/20 p-2.5 rounded-xl text-left transition-all">
+                                <h4 class="text-xs font-bold text-white uppercase">A: Forklift Lane</h4>
+                                <p class="text-[11px] text-slate-400 mt-0.5">Frequent heavy intersections</p>
+                            </button>
+                            <button onclick="selectFloorZone('b')" id="zone-btn-b" class="zone-btn border border-slate-800 bg-slate-950/40 hover:bg-slate-900 p-2.5 rounded-xl text-left transition-all">
+                                <h4 class="text-xs font-bold text-slate-300 uppercase">B: Assembly Line</h4>
+                                <p class="text-[11px] text-slate-400 mt-0.5">High operator activity zone</p>
+                            </button>
+                            <button onclick="selectFloorZone('c')" id="zone-btn-c" class="zone-btn border border-slate-800 bg-slate-950/40 hover:bg-slate-900 p-2.5 rounded-xl text-left transition-all">
+                                <h4 class="text-xs font-bold text-slate-300 uppercase">C: Pallet Stacks</h4>
+                                <p class="text-[11px] text-slate-400 mt-0.5">Potential spatial clutter</p>
+                            </button>
+                            <button onclick="selectFloorZone('d')" id="zone-btn-d" class="zone-btn border border-slate-800 bg-slate-950/40 hover:bg-slate-900 p-2.5 rounded-xl text-left transition-all">
+                                <h4 class="text-xs font-bold text-slate-300 uppercase">D: Machine B</h4>
+                                <p class="text-[11px] text-slate-400 mt-0.5">High idle operator times</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Visual Heatmap -->
+                    <div class="md:col-span-7 bg-slate-950 border border-slate-800 rounded-xl p-5 min-h-[250px] flex flex-col justify-between">
+                        <!-- Simulated Grid floor -->
+                        <div class="relative h-[180px] bg-slate-900 border border-slate-800 rounded-lg overflow-hidden flex justify-center items-center">
+                            <!-- Simple isometric grid style layout -->
+                            <div class="absolute inset-0 bg-grid-slate-800/20 [mask-image:linear-gradient(0deg,#000,transparent)]"></div>
+                            
+                            <!-- Static SVG Floor Plan Mock with highlight spots -->
+                            <svg class="w-full h-full p-2" viewBox="0 0 200 100">
+                                <!-- Area Box A (Forklift Lane) -->
+                                <rect x="20" y="20" width="40" height="60" rx="3" fill="#ea580c" fill-opacity="0.2" stroke="#ea580c" stroke-width="1.5" class="transition-all duration-300" id="svg-zone-a" />
+                                <text x="25" y="32" fill="#ea580c" font-size="6" font-weight="bold">LANE A</text>
+
+                                <!-- Area Box B (Assembly Line) -->
+                                <rect x="80" y="20" width="50" height="30" rx="3" fill="#10b981" fill-opacity="0.1" stroke="#334155" stroke-width="1" class="transition-all duration-300" id="svg-zone-b" />
+                                <text x="85" y="32" fill="#10b981" font-size="6" font-weight="bold">LINE B</text>
+
+                                <!-- Area Box C (Pallet Stacks) -->
+                                <rect x="80" y="60" width="50" height="25" rx="3" fill="#3b82f6" fill-opacity="0.1" stroke="#334155" stroke-width="1" class="transition-all duration-300" id="svg-zone-c" />
+                                <text x="85" y="72" fill="#3b82f6" font-size="6" font-weight="bold">STACK C</text>
+
+                                <!-- Area Box D (Machine B) -->
+                                <rect x="150" y="20" width="30" height="65" rx="3" fill="#f59e0b" fill-opacity="0.1" stroke="#334155" stroke-width="1" class="transition-all duration-300" id="svg-zone-d" />
+                                <text x="154" y="32" fill="#f59e0b" font-size="6" font-weight="bold">MACHINE D</text>
+                            </svg>
+
+                            <div id="heatmap-interactive-detail" class="absolute bottom-2 left-2 right-2 bg-slate-950/90 border border-slate-800 p-2.5 rounded-lg text-xs flex justify-between items-center">
+                                <!-- Dynamic zone updates -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Core Mathematical Metrics Sandbox -->
+            <div class="slide flex-col justify-between h-full w-full slide-hidden" data-title="7. Statistical Calculator">
+                <div>
+                    <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest border-l-4 border-orange-500 pl-2">System Performance</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">Core Safety & Efficiency Mathematics</h2>
+                </div>
+
+                <div class="grid md:grid-cols-12 gap-6 items-center">
+                    <!-- Formulas (left) -->
+                    <div class="md:col-span-6 space-y-4">
+                        <div class="bg-slate-950/40 p-4 border border-slate-800 rounded-xl space-y-4">
+                            <!-- Precision Formulation -->
+                            <div>
+                                <h4 class="text-xs text-cyan-400 font-bold uppercase tracking-wider mb-2">1. Precision & Recall Score Formulas</h4>
+                                <div class="flex items-center gap-4 text-xs font-mono text-slate-300">
+                                    <div class="bg-slate-900 p-2 border border-slate-800 rounded">
+                                        Precision = TP / (TP + FP)
+                                    </div>
+                                    <div class="bg-slate-900 p-2 border border-slate-800 rounded">
+                                        Recall = TP / (TP + FN)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Audit Efficiency Formulation -->
+                            <div>
+                                <h4 class="text-xs text-orange-400 font-bold uppercase tracking-wider mb-2">2. System Inspection Efficiency (E)</h4>
+                                <div class="bg-slate-900 p-3 border border-slate-800 rounded text-xs font-mono text-slate-300 flex justify-between items-center">
+                                    <span>E = ((Tm - Ta) / Tm) × 100%</span>
+                                    <span class="text-[10px] text-slate-500">Tm: Manual Audit Hr | Ta: AI Audit Hr</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Math inputs / Calculator Playground (right) -->
+                    <div class="md:col-span-6 bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-4">
+                        <span class="text-xs font-mono text-cyan-400 block border-b border-slate-800 pb-2">LIVE METRIC CALCULATOR PLAYGROUND</span>
+                        
+                        <div class="grid grid-cols-3 gap-3">
+                            <div>
+                                <label class="text-[11px] text-slate-400 font-semibold block mb-1">True Pos (TP)</label>
+                                <input type="number" id="math-tp" value="95" oninput="runMathCalc()" class="w-full bg-slate-900 text-white font-bold rounded-lg border border-slate-800 p-2 text-center text-sm focus:outline-none focus:ring-1 focus:ring-orange-500">
+                            </div>
+                            <div>
+                                <label class="text-[11px] text-slate-400 font-semibold block mb-1">False Pos (FP)</label>
+                                <input type="number" id="math-fp" value="5" oninput="runMathCalc()" class="w-full bg-slate-900 text-white font-bold rounded-lg border border-slate-800 p-2 text-center text-sm focus:outline-none focus:ring-1 focus:ring-orange-500">
+                            </div>
+                            <div>
+                                <label class="text-[11px] text-slate-400 font-semibold block mb-1">False Neg (FN)</label>
+                                <input type="number" id="math-fn" value="3" oninput="runMathCalc()" class="w-full bg-slate-900 text-white font-bold rounded-lg border border-slate-800 p-2 text-center text-sm focus:outline-none focus:ring-1 focus:ring-orange-500">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="text-[11px] text-slate-400 font-semibold block mb-1">Manual Audit Hours (Tm)</label>
+                                <input type="number" id="math-tm" value="10" oninput="runMathCalc()" class="w-full bg-slate-900 text-white font-bold rounded-lg border border-slate-800 p-2 text-center text-sm focus:outline-none focus:ring-1 focus:ring-orange-500">
+                            </div>
+                            <div>
+                                <label class="text-[11px] text-slate-400 font-semibold block mb-1">AI Process Hours (Ta)</label>
+                                <input type="number" id="math-ta" value="1.5" oninput="runMathCalc()" class="w-full bg-slate-900 text-white font-bold rounded-lg border border-slate-800 p-2 text-center text-sm focus:outline-none focus:ring-1 focus:ring-orange-500">
+                            </div>
+                        </div>
+
+                        <!-- Mathematical Vector Outputs -->
+                        <div class="grid grid-cols-3 gap-3 border-t border-slate-800 pt-3">
+                            <div class="text-center">
+                                <span class="text-[10px] text-slate-500 block uppercase font-bold">Precision</span>
+                                <span id="out-precision" class="text-base md:text-lg font-bold text-cyan-400">0.00%</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-[10px] text-slate-500 block uppercase font-bold">Recall</span>
+                                <span id="out-recall" class="text-base md:text-lg font-bold text-cyan-400">0.00%</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-[10px] text-slate-500 block uppercase font-bold">Efficiency (E)</span>
+                                <span id="out-efficiency" class="text-base md:text-lg font-bold text-orange-500">0.00%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Statistical Benchmark Results -->
+            <div class="slide flex-col justify-between h-full w-full slide-hidden" data-title="8. Benchmark Results">
+                <div>
+                    <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest border-l-4 border-orange-500 pl-2">Evaluation Metrics</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">Core System Benchmarks & Live Frame rates</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-4">
+                        <div class="space-y-3.5">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+                                    <span>Mean Average Precision (mAP)</span>
+                                    <span class="text-cyan-400">91% - 95% Score</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
+                                    <div class="bg-gradient-to-r from-cyan-500 to-teal-500 h-3 rounded-full" style="width: 93%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+                                    <span>Processing Frame Speed</span>
+                                    <span class="text-orange-400">40 - 50 FPS (Real-time)</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
+                                    <div class="bg-gradient-to-r from-orange-500 to-amber-500 h-3 rounded-full" style="width: 82%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold text-slate-300 mb-1">
+                                    <span>False Alarm Rate (FPR)</span>
+                                    <span class="text-red-400">&lt; 5%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
+                                    <div class="bg-gradient-to-r from-red-500 to-rose-500 h-3 rounded-full" style="width: 15%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950/60 p-5 rounded-xl border border-slate-800 space-y-3">
+                        <span class="text-xs font-mono text-cyan-400 flex items-center gap-2">
+                            <span class="h-2 w-2 rounded-full bg-cyan-400 live-glow"></span>
+                            COMPLIANCE AUDIT DISPATCH
+                        </span>
+                        <div class="space-y-2 text-xs md:text-sm">
+                            <p class="flex justify-between text-slate-300 border-b border-slate-900 pb-1.5">
+                                <span>Multi-Camera Concurrency:</span>
+                                <strong class="text-white">Supported (up to 8 channels)</strong>
+                            </p>
+                            <p class="flex justify-between text-slate-300 border-b border-slate-900 pb-1.5">
+                                <span>Model Architecture:</span>
+                                <strong class="text-white">Optimized YOLOv8 Nano Edge</strong>
+                            </p>
+                            <p class="flex justify-between text-slate-300">
+                                <span>Action Alert Latency:</span>
+                                <strong class="text-orange-500">&lt; 150 milliseconds</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Ethical Protections & Privacy -->
+            <div class="slide flex-col justify-between h-full w-full slide-hidden" data-title="9. Ethical Standards">
+                <div>
+                    <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest border-l-4 border-orange-500 pl-2">Legal Compliance</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">Ethical Workplace Monitoring Safeguards</h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-slate-950/40 border border-slate-800 rounded-xl p-4 space-y-2">
+                        <div class="text-2xl text-cyan-400"><i class="fa-solid fa-user-slash"></i></div>
+                        <h3 class="text-sm md:text-base font-bold text-slate-200">Worker Anonymity</h3>
+                        <p class="text-xs md:text-sm text-slate-400">
+                            Automatic edge blurring of worker faces on localized video channels blocks invasive monitoring of workers.
+                        </p>
+                    </div>
+                    <div class="bg-slate-950/40 border border-slate-800 rounded-xl p-4 space-y-2">
+                        <div class="text-2xl text-orange-400"><i class="fa-solid fa-server"></i></div>
+                        <h3 class="text-sm md:text-base font-bold text-slate-200">Local Edge Execution</h3>
+                        <p class="text-xs md:text-sm text-slate-400">
+                            Video data stays locally inside internal network clusters, eliminating data leak risks linked with outside cloud streaming.
+                        </p>
+                    </div>
+                    <div class="bg-slate-950/40 border border-slate-800 rounded-xl p-4 space-y-2">
+                        <div class="text-2xl text-cyan-400"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <h3 class="text-sm md:text-base font-bold text-slate-200">Policy Transparency</h3>
+                        <p class="text-xs md:text-sm text-slate-400">
+                            Setting up clear industrial safety boundaries ensures worker trust and respects privacy dignity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Structural & Lighting Obstacles -->
+            <div class="slide flex-col justify-between h-full w-full slide-hidden" data-title="10. Industrial Limitations">
+                <div>
+                    <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest border-l-4 border-orange-500 pl-2">Production Realities</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">Environmental Limitations & Mitigations</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div class="bg-slate-950/40 border border-slate-800 p-4 rounded-xl">
+                        <h3 class="text-sm md:text-base font-bold text-orange-400 flex items-center gap-2 mb-3">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Heavy Site Impediments
+                        </h3>
+                        <ul class="space-y-2.5 text-xs md:text-sm">
+                            <li><strong class="text-slate-300">Visual Occlusion:</strong> Forklifts, racking pillars, and inventory blocks camera viewpoints.</li>
+                            <li><strong class="text-slate-300">Low Lighting / Shadowing:</strong> High dust density or weak warehouse lamps confuse standard models.</li>
+                            <li><strong class="text-slate-300">Processing Overhead:</strong> Concurrent stream computation demands local GPU servers.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-950/40 border border-slate-800 p-4 rounded-xl">
+                        <h3 class="text-sm md:text-base font-bold text-cyan-400 flex items-center gap-2 mb-3">
+                            <i class="fa-solid fa-shield-halved"></i> Engineered Workarounds
+                        </h3>
+                        <ul class="space-y-2.5 text-xs md:text-sm">
+                            <li><strong class="text-slate-300">Camera Fusion:</strong> Linking adjacent CCTV views helps models see past blindspots.</li>
+                            <li><strong class="text-slate-300">Equalization Filters:</strong> Contrast-enhancing preprocessing cleans dark video streams.</li>
+                            <li><strong class="text-slate-300">Optimized Backbones:</strong> Lightweight models (YOLO Nano) run safely on standard edge processors.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 11: Production Integration Roadmap -->
+            <div class="slide flex-col justify-between h-full w-full slide-hidden" data-title="11. System Roadmap">
+                <div>
+                    <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest border-l-4 border-orange-500 pl-2">Scalability Timeline</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">Integration Roadmap</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-slate-950/50 p-4 border border-slate-800 rounded-xl relative overflow-hidden">
+                        <span class="text-xs font-mono text-cyan-400 font-bold block mb-1">PHASE 1 (Q1)</span>
+                        <h4 class="text-sm font-bold text-white mb-2">Self-Adaptive Learning</h4>
+                        <p class="text-xs text-slate-400">Models adapt dynamically to variable factory illumination and changing shift environments.</p>
+                    </div>
+
+                    <div class="bg-slate-950/50 p-4 border border-slate-800 rounded-xl relative overflow-hidden">
+                        <span class="text-xs font-mono text-cyan-400 font-bold block mb-1">PHASE 2 (Q2)</span>
+                        <h4 class="text-sm font-bold text-white mb-2">Industrial IoT Sync</h4>
+                        <p class="text-xs text-slate-400">Direct integration into physical machine gate locks to instantly stop equipment upon near-miss hazards.</p>
+                    </div>
+
+                    <div class="bg-slate-950/50 p-4 border border-slate-800 rounded-xl relative overflow-hidden">
+                        <span class="text-xs font-mono text-cyan-400 font-bold block mb-1">PHASE 3 (Q3)</span>
+                        <h4 class="text-sm font-bold text-white mb-2">Spatial Analytics</h4>
+                        <p class="text-xs text-slate-400">Map long-term safety indicators across site locations to pinpoint hazards before slips occur.</p>
+                    </div>
+
+                    <div class="bg-slate-950/50 p-4 border border-slate-800 rounded-xl relative overflow-hidden">
+                        <span class="text-xs font-mono text-cyan-400 font-bold block mb-1">PHASE 4 (Q4)</span>
+                        <h4 class="text-sm font-bold text-white mb-2">Full Automation</h4>
+                        <p class="text-xs text-slate-400">Integrate global safety metrics dashboards for multinational manufacturing grids.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 12: Workload Breakdown & Open Q&A -->
+            <div class="slide flex-col justify-between h-full w-full slide-hidden" data-title="12. Work Distribution & Q&A">
+                <div>
+                    <span class="text-xs font-semibold text-orange-500 uppercase tracking-widest border-l-4 border-orange-500 pl-2">Session Conclusion</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mt-1 mb-4">Author Workload Distribution & Q&A</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <!-- Project Responsibilities -->
+                    <div class="space-y-3">
+                        <h3 class="text-sm md:text-base font-bold text-cyan-400 flex items-center gap-2 mb-2">
+                            <i class="fa-solid fa-users-gear"></i> Division of Responsibilities
+                        </h3>
+                        <div class="space-y-2 text-xs md:text-sm">
+                            <div class="bg-slate-950/40 border border-slate-800 p-2 rounded-lg">
+                                <strong class="text-slate-200">Mohammad Zakwan Zuhairie:</strong>
+                                <span class="text-slate-400 text-xs block">Process Flow Engineering &amp; System Deep Learning Architecture Design</span>
+                            </div>
+                            <div class="bg-slate-950/40 border border-slate-800 p-2 rounded-lg">
+                                <strong class="text-slate-200">Ismail bin Esa:</strong>
+                                <span class="text-slate-400 text-xs block">Privacy Anonymization Framework Development &amp; Operational Math Metrics</span>
+                            </div>
+                            <div class="bg-slate-950/40 border border-slate-800 p-2 rounded-lg">
+                                <strong class="text-slate-200">Harresh Uthayakumar:</strong>
+                                <span class="text-slate-400 text-xs block">Statistical Evaluation, Results Discussion, and Industrial Conclusion</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Open Q&A Terminal -->
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-5 text-center space-y-4">
+                        <h1 class="text-4xl md:text-6xl font-extrabold text-orange-500 tracking-wider">Q&amp;A</h1>
+                        <p class="text-sm font-medium text-slate-300">Thank you for your valuable time</p>
+                        <div class="w-16 h-1 bg-cyan-500 mx-auto rounded-full"></div>
+                        <p class="text-xs text-slate-400">Questions, critiques, and implementation discussion welcome</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide Progress Indicators (Bottom bar inside deck box) -->
+            <footer class="flex items-center justify-between border-t border-slate-800/80 pt-4 mt-6">
+                <!-- Navigation Guide Helpers -->
+                <div class="hidden sm:flex items-center gap-3 text-xs text-slate-500">
+                    <span class="flex items-center gap-1.5 bg-slate-850 px-2.5 py-1 rounded border border-slate-800"><i class="fa-solid fa-arrow-left"></i> Previous</span>
+                    <span class="flex items-center gap-1.5 bg-slate-850 px-2.5 py-1 rounded border border-slate-800">Next <i class="fa-solid fa-arrow-right"></i></span>
+                    <span class="text-[10px] font-semibold text-slate-600">SPACE BAR works too!</span>
+                </div>
+
+                <!-- Slide Fraction Identifier Indicator -->
+                <div class="text-xs text-slate-400 font-mono">
+                    Slide <span id="current-slide-num" class="text-orange-500 font-bold">1</span> of <span id="total-slides-num" class="text-slate-500">12</span>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Navigation Drawer controls (Floating) -->
+    <div class="fixed bottom-6 right-6 flex items-center gap-3 z-50">
+        <button id="prev-slide-btn" class="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 hover:border-orange-500 hover:bg-orange-500/10 text-white flex items-center justify-center transition-all shadow-lg">
+            <i class="fa-solid fa-chevron-left text-lg"></i>
+        </button>
+        <button id="next-slide-btn" class="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 hover:border-orange-500 hover:bg-orange-500/10 text-white flex items-center justify-center transition-all shadow-lg">
+            <i class="fa-solid fa-chevron-right text-lg"></i>
+        </button>
+    </div>
+
+    <script>
+        // CORE SLIDES DECK NAV MODULE
+        const slides = document.querySelectorAll('.slide');
+        const jumper = document.getElementById('slide-jumper');
+        const curNum = document.getElementById('current-slide-num');
+        const totNum = document.getElementById('total-slides-num');
+        const prevBtn = document.getElementById('prev-slide-btn');
+        const nextBtn = document.getElementById('next-slide-btn');
+        const toggleJargonBtn = document.getElementById('toggle-jargon');
+        const toggleDot = document.getElementById('toggle-dot');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+        let currentSlideIndex = 0;
+        let jargonFreeMode = false;
+
+        // Initialize total slide indicator count
+        totNum.textContent = slides.length;
+
+        // Load Jumper Options
+        slides.forEach((slide, idx) => {
+            const opt = document.createElement('option');
+            opt.value = idx;
+            opt.textContent = slide.getAttribute('data-title') || `Slide ${idx + 1}`;
+            jumper.appendChild(opt);
+        });
+
+        function renderSlide(index) {
+            slides.forEach((slide, idx) => {
+                if (idx === index) {
+                    slide.classList.remove('slide-hidden');
+                    slide.classList.add('slide-visible');
+                } else {
+                    slide.classList.remove('slide-visible');
+                    slide.classList.add('slide-hidden');
+                }
+            });
+
+            currentSlideIndex = index;
+            curNum.textContent = index + 1;
+            jumper.value = index;
+
+            // Trigger specific slide layout recalculations if visible
+            if (index === 2) { // Slide 3 (Arch)
+                selectArchStep(1);
+            } else if (index === 3) { // Slide 4 (PPE Sandbox)
+                runPpeSim();
+            } else if (index === 4) { // Slide 5 (Pose)
+                setSkeletonPose('safe');
+            } else if (index === 5) { // Slide 6 (Heatmap)
+                selectFloorZone('a');
+            } else if (index === 6) { // Slide 7 (Calculator)
+                runMathCalc();
+            }
+        }
+
+        // Action Nav Handlers
+        function nextSlide() {
+            if (currentSlideIndex < slides.length - 1) {
+                renderSlide(currentSlideIndex + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                renderSlide(currentSlideIndex - 1);
+            }
+        }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+        jumper.addEventListener('change', (e) => {
+            renderSlide(parseInt(e.target.value));
+        });
+
+        // Key bindings
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'ArrowRight' || e.code === 'Space') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.code === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // Swipe Touch handlers for portable tablets & devices
+        let startX = 0;
+        document.addEventListener('touchstart', e => {
+            startX = e.changedTouches[0].screenX;
+        }, false);
+
+        document.addEventListener('touchend', e => {
+            let endX = e.changedTouches[0].screenX;
+            if (startX - endX > 50) {
+                nextSlide(); // Swiped left, show next
+            } else if (endX - startX > 50) {
+                prevSlide(); // Swiped right, show prev
+            }
+        }, false);
+
+        // Fullscreen Toggle
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        // Layman Explainer vs Jargon Swapper Definitions Map
+        const standardContent = {
+            s2_title: "Research Objectives & Expected Impact",
+            s2_stat1: "Reduction in Total Safety Violations",
+            s2_stat2: "Boost in On-Site Spatial Productivity",
+            s3_title: "Multimedia Architecture Pipeline",
+            s3_inference_h4: "Deep Neural Inference",
+            s3_inference_desc: "Execute localization and pattern mapping",
+            s5_title: "Ergonomics & Slip-Fall Simulation",
+            s5_lumbar: "Lumbar/Hip Strain Index",
+            s7_title: "Core Safety & Efficiency Mathematics",
+            s8_title: "Core System Benchmarks & Live Frame rates"
+        };
+
+        const laymanContent = {
+            s2_title: "What This Project Aims To Fix",
+            s2_stat1: "Fewer Safety Incidents (Accidents)",
+            s2_stat2: "Faster, Better Operational Flow",
+            s3_title: "How the Safety Video System Works",
+            s3_inference_h4: "Smart Brain Analysis",
+            s3_inference_desc: "Computer figures out who is moving and where",
+            s5_title: "Body Posture & Balance Fall Warning System",
+            s5_lumbar: "Spine & Back Muscle Strain Danger",
+            s7_title: "The Math Behind Safety & Efficiency",
+            s8_title: "How Well the Smart AI Performs on Site"
+        };
+
+        toggleJargonBtn.addEventListener('click', () => {
+            jargonFreeMode = !jargonFreeMode;
+            if (jargonFreeMode) {
+                toggleJargonBtn.classList.remove('bg-slate-600');
+                toggleJargonBtn.classList.add('bg-cyan-500');
+                toggleDot.classList.remove('translate-x-0');
+                toggleDot.classList.add('translate-x-5');
+                applyExplainerMode(laymanContent);
+            } else {
+                toggleJargonBtn.classList.remove('bg-cyan-500');
+                toggleJargonBtn.classList.add('bg-slate-600');
+                toggleDot.classList.remove('translate-x-5');
+                toggleDot.classList.add('translate-x-0');
+                applyExplainerMode(standardContent);
+            }
+            // Force re-draw of current view state to update terms
+            renderSlide(currentSlideIndex);
+        });
+
+        function applyExplainerMode(contentSet) {
+            // Apply text modifications to elements carrying translations
+            document.querySelectorAll('[data-translation-id]').forEach(elem => {
+                const id = elem.getAttribute('data-translation-id');
+                if (contentSet[id]) {
+                    elem.textContent = contentSet[id];
+                }
+            });
+        }
+
+        // SLIDE 3: System Pipeline Details Walkthrough Content Map
+        const archStepsData = {
+            1: {
+                title: "1. Capture Live Stream Feed",
+                details: "Direct connection established with manufacturing floor cameras using steady security streaming pathways (RTSP).",
+                specs: "• Codec: H.264 video feed\n• Res: 1080p high definition\n• Framerate: 25 - 30 frames per second"
+            },
+            2: {
+                title: "2. Pre-Processing Cleanup",
+                details: "Clears up video stream problems before checking with the AI model. Solves high industrial glare and dark shadows.",
+                specs: "• Contrast Normalization: Active\n• Resizing Bounds: Optimized to 640x640\n• Noise Reduction Filter: Active (spatial Gaussian)"
+            },
+            3: {
+                title: "3. Deep Neural Inference (Smart Search)",
+                details: "Runs frame checks against trained safety gear datasets to map exact object bounding boxes around helmets or workers.",
+                specs: "• Backbone: Custom lightweight CNN\n• Classification Model: YOLO-based layers\n• Latency: ~10ms processing time"
+            },
+            4: {
+                title: "4. Edge Alert Warning Output",
+                details: "Instantly fires warnings directly onto floor monitors or supervisor dashboards if compliance errors are found.",
+                specs: "• Response Protocol: Local edge hub alert\n• Safety Dashboard: Real-time update\n• Safety Hazard Log: Database persistent entry"
+            }
+        };
+
+        function selectArchStep(stepNum) {
+            // Update buttons aesthetic
+            document.querySelectorAll('.arch-step-btn').forEach((btn, idx) => {
+                if (idx + 1 === stepNum) {
+                    btn.classList.remove('bg-slate-900/40', 'border-slate-800');
+                    btn.classList.add('bg-cyan-950/30', 'border-cyan-500/30');
+                    btn.querySelector('span').classList.remove('bg-slate-700', 'text-slate-300');
+                    btn.querySelector('span').classList.add('bg-cyan-500', 'text-white');
+                } else {
+                    btn.classList.add('bg-slate-900/40', 'border-slate-800');
+                    btn.classList.remove('bg-cyan-950/30', 'border-cyan-500/30');
+                    btn.querySelector('span').classList.add('bg-slate-700', 'text-slate-300');
+                    btn.querySelector('span').classList.remove('bg-cyan-500', 'text-white');
+                }
+            });
+
+            // Update terminal output description
+            const contentBox = document.getElementById('arch-terminal-content');
+            const data = archStepsData[stepNum];
+            contentBox.innerHTML = `
+                <p class="text-cyan-400 font-bold mb-1">${data.title}</p>
+                <p class="text-xs text-slate-300 mb-3">${data.details}</p>
+                <p class="text-[11px] text-slate-400 font-semibold uppercase tracking-wider mb-1">Processing Specs:</p>
+                <pre class="bg-slate-900/90 border border-slate-850 p-2 rounded text-[11px] text-cyan-300/80 leading-relaxed">${data.specs}</pre>
+            `;
+        }
+
+        // SLIDE 4: Interactive PPE Compliance Calculator Sandbox
+        function runPpeSim() {
+            const hasHelmet = document.getElementById('sim-helmet').checked;
+            const hasVest = document.getElementById('sim-vest').checked;
+            const hasGloves = document.getElementById('sim-gloves').checked;
+
+            // Update SVG graphical layers
+            document.getElementById('svg-helmet-group').style.opacity = hasHelmet ? '1' : '0';
+            document.getElementById('svg-vest-group').style.opacity = hasVest ? '1' : '0';
+            document.getElementById('svg-gloves-group').style.opacity = hasGloves ? '1' : '0';
+
+            // Update Classification HUD text labels
+            document.getElementById('hud-helmet').querySelector('span:last-child').className = hasHelmet ? 'text-green-400 font-bold' : 'text-red-400 font-bold';
+            document.getElementById('hud-helmet').querySelector('span:last-child').textContent = hasHelmet ? 'YES' : 'MISSING';
+
+            document.getElementById('hud-vest').querySelector('span:last-child').className = hasVest ? 'text-green-400 font-bold' : 'text-red-400 font-bold';
+            document.getElementById('hud-vest').querySelector('span:last-child').textContent = hasVest ? 'YES' : 'MISSING';
+
+            document.getElementById('hud-gloves').querySelector('span:last-child').className = hasGloves ? 'text-green-400 font-bold' : 'text-red-400 font-bold';
+            document.getElementById('hud-gloves').querySelector('span:last-child').textContent = hasGloves ? 'YES' : 'MISSING';
+
+            // Compute overall compliance status and show banner feedback
+            const alertBanner = document.getElementById('ppe-alert-banner');
+            if (hasHelmet && hasVest && hasGloves) {
+                alertBanner.className = "p-3.5 rounded-xl text-xs font-semibold flex items-center gap-2.5 bg-green-500/15 border border-green-500/30 text-green-400";
+                alertBanner.innerHTML = `
+                    <i class="fa-solid fa-circle-check text-base"></i>
+                    <div>
+                        <p class="font-bold">ALL COMPLIANCE SECURED</p>
+                        <p class="text-[10px] text-green-500/80">Worker is fully cleared to enter dangerous machine zones.</p>
+                    </div>
+                `;
+            } else {
+                alertBanner.className = "p-3.5 rounded-xl text-xs font-semibold flex items-center gap-2.5 bg-red-500/15 border border-red-500/30 text-red-400";
+                
+                let missingItems = [];
+                if (!hasHelmet) missingItems.push("Safety Helmet");
+                if (!hasVest) missingItems.push("High-Vis Vest");
+                if (!hasGloves) missingItems.push("Glove Protection");
+
+                alertBanner.innerHTML = `
+                    <i class="fa-solid fa-triangle-exclamation text-base animate-pulse"></i>
+                    <div>
+                        <p class="font-bold">SAFETY VIOLATION ALERT</p>
+                        <p class="text-[10px] text-red-500/80">Missing: ${missingItems.join(', ')}. Incident recorded on server.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // SLIDE 5: Dynamic Human Skeleton Point Interpolation Sandbox
+        const skeletalVectors = {
+            safe: {
+                d: "M 50 15 L 50 40 L 50 65 M 50 40 L 30 50 M 50 40 L 70 50 M 50 65 L 42 75 L 35 90 M 50 65 L 58 75 L 65 90",
+                nodes: [
+                    {cx: 50, cy: 15, label: "Head"},
+                    {cx: 50, cy: 40, label: "Shoulders"},
+                    {cx: 50, cy: 65, label: "Hip joints"},
+                    {cx: 30, cy: 50, label: "Left Wrist"},
+                    {cx: 70, cy: 50, label: "Right Wrist"},
+                    {cx: 35, cy: 90, label: "Left Foot"},
+                    {cx: 65, cy: 90, label: "Right Foot"}
+                ],
+                status: "HEALTHY POSTURE",
+                statusClass: "text-green-400 px-2 py-0.5 rounded bg-green-400/10 font-bold",
+                lumbarWidth: "15%",
+                lumbarBg: "bg-green-500",
+                balanceWidth: "8%",
+                balanceBg: "bg-green-500"
+            },
+            bend: {
+                d: "M 70 30 L 58 42 L 40 55 M 58 42 L 50 62 M 58 42 L 68 52 M 40 55 L 40 72 L 35 90 M 40 55 L 55 72 L 55 90",
+                nodes: [
+                    {cx: 70, cy: 30, label: "Head"},
+                    {cx: 58, cy: 42, label: "Shoulders"},
+                    {cx: 40, cy: 55, label: "Hip joints"},
+                    {cx: 50, cy: 62, label: "Left Wrist"},
+                    {cx: 68, cy: 52, label: "Right Wrist"},
+                    {cx: 35, cy: 90, label: "Left Foot"},
+                    {cx: 55, cy: 90, label: "Right Foot"}
+                ],
+                status: "CRITICAL BENDING STRAIN",
+                statusClass: "text-amber-400 px-2 py-0.5 rounded bg-amber-400/10 font-bold",
+                lumbarWidth: "85%",
+                lumbarBg: "bg-amber-500",
+                balanceWidth: "42%",
+                balanceBg: "bg-amber-500"
+            },
+            fall: {
+                d: "M 25 80 L 40 75 L 60 78 M 40 75 L 35 55 M 40 75 L 48 58 M 60 78 L 78 80 L 90 75 M 60 78 L 75 90 L 88 88",
+                nodes: [
+                    {cx: 25, cy: 80, label: "Head"},
+                    {cx: 40, cy: 75, label: "Shoulders"},
+                    {cx: 60, cy: 78, label: "Hip joints"},
+                    {cx: 35, cy: 55, label: "Left Wrist"},
+                    {cx: 48, cy: 58, label: "Right Wrist"},
+                    {cx: 90, cy: 75, label: "Left Foot"},
+                    {cx: 88, cy: 88, label: "Right Foot"}
+                ],
+                status: "SLIP-FALL WARNING",
+                statusClass: "text-red-400 px-2 py-0.5 rounded bg-red-400/10 font-bold animate-pulse",
+                lumbarWidth: "98%",
+                lumbarBg: "bg-red-500",
+                balanceWidth: "95%",
+                balanceBg: "bg-red-500"
+            }
+        };
+
+        function setSkeletonPose(poseId) {
+            // Adjust selection button borders
+            document.querySelectorAll('.pose-btn').forEach(btn => {
+                if (btn.id === `pose-btn-${poseId}`) {
+                    btn.classList.add('border-cyan-500/80', 'bg-slate-900');
+                    btn.classList.remove('border-slate-800', 'bg-slate-950/40');
+                } else {
+                    btn.classList.remove('border-cyan-500/80', 'bg-slate-900');
+                    btn.classList.add('border-slate-800', 'bg-slate-950/40');
+                }
+            });
+
+            const data = skeletalVectors[poseId];
+            
+            // Vector path update
+            document.getElementById('skeletal-path').setAttribute('d', data.d);
+
+            // Toggle colors based on warning states
+            let strokeColor = "#10b981"; // Safe Green
+            if (poseId === 'bend') strokeColor = "#f59e0b"; // Warning Orange
+            if (poseId === 'fall') strokeColor = "#ef4444"; // Alarm Red
+            document.getElementById('skeletal-path').setAttribute('stroke', strokeColor);
+
+            // Rebuild Joint circles
+            const nodesGroup = document.getElementById('skeleton-nodes');
+            nodesGroup.innerHTML = '';
+            data.nodes.forEach(node => {
+                const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                circle.setAttribute('cx', node.cx);
+                circle.setAttribute('cy', node.cy);
+                circle.setAttribute('r', '3');
+                circle.setAttribute('fill', strokeColor);
+                nodesGroup.appendChild(circle);
+            });
+
+            // Update gauges & status labels
+            const statusLabel = document.getElementById('pose-status-text');
+            statusLabel.textContent = data.status;
+            statusLabel.className = data.statusClass;
+
+            const lumbar = document.getElementById('gauge-lumbar');
+            lumbar.style.width = data.lumbarWidth;
+            lumbar.className = `${data.lumbarBg} h-2.5 rounded-full transition-all duration-500`;
+
+            const balance = document.getElementById('gauge-balance');
+            balance.style.width = data.balanceWidth;
+            balance.className = `${data.balanceBg} h-2.5 rounded-full transition-all duration-500`;
+        }
+
+        // SLIDE 6: Floor Space Bottlenecks & Spatial Heatmap
+        const floorZonesData = {
+            a: {
+                title: "Forklift High Transit Lane (Zone A)",
+                stat: "Safety Risk: HIGH",
+                desc: "High-density intersection where heavy loaders cross paths with on-foot workers. Vision tracks trigger automated slow-down signals."
+            },
+            b: {
+                title: "Product Assembly Workspace (Zone B)",
+                stat: "Production State: STABLE",
+                desc: "Heavy assembly lines running smooth schedules. Monitored continuously to analyze manual movement patterns and reduce wrist injuries."
+            },
+            c: {
+                title: "Pallet Packing Zone (Zone C)",
+                stat: "Warning: SPATIAL OVERFLOW",
+                desc: "Visual clutter is high due to disorganized pallet blocks. AI traces spatial overflow limits to clear path blockages."
+            },
+            d: {
+                title: "Packaging Station (Zone D)",
+                stat: "Idle State: HIGH (40%)",
+                desc: "Operators face recurring packing tape delays. Vision analysis helps redesign layouts to remove packaging line bottlenecks."
+            }
+        };
+
+        function selectFloorZone(zoneId) {
+            // Reset button active borders
+            document.querySelectorAll('.zone-btn').forEach(btn => {
+                if (btn.id === `zone-btn-${zoneId}`) {
+                    btn.classList.add('border-orange-500', 'bg-orange-500/10');
+                    btn.classList.remove('border-slate-800', 'bg-slate-950/40');
+                } else {
+                    btn.classList.remove('border-orange-500', 'bg-orange-500/10');
+                    btn.classList.add('border-slate-800', 'bg-slate-950/40');
+                }
+            });
+
+            // Adjust colors on isometric floor SVGs
+            document.querySelectorAll('[id^="svg-zone-"]').forEach(rect => {
+                if (rect.id === `svg-zone-${zoneId}`) {
+                    rect.setAttribute('fill-opacity', '0.45');
+                    rect.setAttribute('stroke', '#f97316');
+                } else {
+                    rect.setAttribute('fill-opacity', '0.1');
+                    rect.setAttribute('stroke', '#334155');
+                }
+            });
+
+            // Update terminal text details
+            const detailBox = document.getElementById('heatmap-interactive-detail');
+            const data = floorZonesData[zoneId];
+            detailBox.innerHTML = `
+                <div>
+                    <h4 class="font-bold text-slate-200">${data.title}</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">${data.desc}</p>
+                </div>
+                <span class="text-[10px] bg-orange-500/20 text-orange-400 font-bold uppercase tracking-wider px-2 py-1 rounded shrink-0 ml-3">${data.stat}</span>
+            `;
+        }
+
+        // SLIDE 7: Precision / Recall / Audit Efficiency Formula Playground
+        function runMathCalc() {
+            const tp = parseFloat(document.getElementById('math-tp').value) || 0;
+            const fp = parseFloat(document.getElementById('math-fp').value) || 0;
+            const fn = parseFloat(document.getElementById('math-fn').value) || 0;
+            const tm = parseFloat(document.getElementById('math-tm').value) || 0;
+            const ta = parseFloat(document.getElementById('math-ta').value) || 0;
+
+            // Precision calculation
+            const precisionVal = (tp + fp) > 0 ? (tp / (tp + fp)) * 100 : 0;
+            // Recall calculation
+            const recallVal = (tp + fn) > 0 ? (tp / (tp + fn)) * 100 : 0;
+            // Efficiency calculation
+            const efficiencyVal = tm > 0 ? ((tm - ta) / tm) * 100 : 0;
+
+            document.getElementById('out-precision').textContent = `${precisionVal.toFixed(2)}%`;
+            document.getElementById('out-recall').textContent = `${recallVal.toFixed(2)}%`;
+            document.getElementById('out-efficiency').textContent = `${efficiencyVal.toFixed(2)}%`;
+        }
+
+        // Force initialize on window load
+        window.onload = function() {
+            renderSlide(0);
+        };
+    </script>
+</body>
+</html>
